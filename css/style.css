@@ -1,0 +1,13 @@
+/* income area */
+.income-are{
+    background-color: #F8F8F8;
+    border-radius: 5px;
+}
+.input-Field{
+    background-color: #DCDCDC;
+    border: none;
+    width: 229px;
+    height: 44px;
+    border-radius: 5px;
+    /* margin-left: 25px; */
+}
