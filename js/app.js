@@ -12,8 +12,10 @@ function inputValidation(functionParameter, idParameter){
         //expense alert
         document.getElementById('expense-alert').style.display = 'none';
         document.getElementById('total-expenses').style.display = 'block';
+        document.getElementById('rest-balance').style.display = 'block'
     }else{
         document.getElementById(idParameter).style.display = 'block'
+        document.getElementById('rest-balance').style.display = 'none'
     }
 }
 
@@ -44,6 +46,7 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
     }else{
         document.getElementById('expense-alert').style.display = 'block';
         document.getElementById('total-expenses').style.display = 'none';
+        document.getElementById('rest-balance').style.display = 'none';
     }
     const totalExpensesAmount = totalExpenses.innerText;
     //Rest Balance
