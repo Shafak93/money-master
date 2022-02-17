@@ -1,52 +1,57 @@
-/* function getInputValue(inputid){
-    const input = document.getElementById(inputid);
-    const inputAmount = parseInt(input.value);
-
-    const totalExpenses = document.getElementById('total-expenses');
-    if(isNaN(inputAmount)== -1){
-        return inputAmount
-    }else{
-        alert('Please enter amount in number')
-    }
+function getInputValue(inputid){
+    debugger
+    const inputField = document.getElementById(inputid);
+    var inputAmount = parseFloat(inputField.value);
+    // if(!isNaN(inputField.value) && inputField.value > 0){
+       
+    //      document.getElementById('notify-fail').style.display = 'none'
+    // }
+    // else{
+    //     document.getElementById('notify-fail').style.display = 'block'
+    //     //alert('Enter a positive number');
+    // }
+    return inputAmount;
     
-} */
+}
 
 document.getElementById('calculate-btn').addEventListener('click', function(){
     //Income Amount
-    // const incomeInputAmount = getInputValue('income-input');
-   //debugger
-    const incomeInput = document.getElementById('income-input');
-    const incomeInputAmount = parseFloat(incomeInput.value);
-    /* if(typeof(incomeInputAmount) != 'number'){
-        alert('Please enter a number on th income field')
-    } */
-    
-    
+    const incomeInputAmount = getInputValue('income-input');
+    if(!isNaN(incomeInputAmount) && incomeInputAmount > 0){
+        document.getElementById('income-fail').style.display = 'none'
+    }else{
+        document.getElementById('income-fail').style.display = 'block'
+    }
     //Food Amount
-    //const foodInputAmount = getInputValue('food-input');
-    const foodInput = document.getElementById('food-input');
-    const foodInputAmount = parseFloat(foodInput.value);
-
-    
-
+    const foodInputAmount = getInputValue('food-input');
+    if(!isNaN(foodInputAmount) && foodInputAmount > 0){
+        document.getElementById('food-fail').style.display = 'none'
+    }else{
+        document.getElementById('food-fail').style.display = 'block'
+    }
     //Rent amount
-    // const rentInputAmount = getInputValue('rent-input');
-    const rentInput = document.getElementById('rent-input');
-    const rentInputAmount = parseFloat(rentInput.value);
-
-   
+    const rentInputAmount = getInputValue('rent-input');
+    if(!isNaN(rentInputAmount) && rentInputAmount > 0){
+        document.getElementById('rent-fail').style.display = 'none'
+    }else{
+        document.getElementById('rent-fail').style.display = 'block'
+    }
     //Cloth Amount
-    //const clothInputAmount = getInputValue('cloth-input');
-    const clothInput = document.getElementById('cloth-input');
-    const clothInputAmount = parseFloat(clothInput.value);
-    
-   
+    const clothInputAmount = getInputValue('cloth-input');
+    if(!isNaN(clothInputAmount) && clothInputAmount > 0){
+        document.getElementById('cloth-fail').style.display = 'none'
+    }else{
+        document.getElementById('cloth-fail').style.display = 'block'
+    }
     //Total Expenses
     const totalExpenses = document.getElementById('total-expenses');
-    
-    totalExpenses.innerText = foodInputAmount + rentInputAmount + clothInputAmount;
+    const totalExpensesNumber = foodInputAmount + rentInputAmount + clothInputAmount;
+    if(incomeInputAmount> totalExpensesNumber){
+        totalExpenses.innerText = totalExpensesNumber;
+    }else{
+        //alert('You do not have sufficient balance to expense.')
+    }
     const totalExpensesAmount = totalExpenses.innerText;
-
     //Rest Balance
     const restBalance = document.getElementById('rest-balance');
     restBalance.innerText = incomeInputAmount - totalExpensesAmount
@@ -54,45 +59,30 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
 
 document.getElementById('save-btn').addEventListener('click', function(){
     //Income amount
-    const incomeInput = document.getElementById('income-input');
-    const incomeInputAmount = parseFloat(incomeInput.value);
-    incomeInput.value = ''
-
+    const incomeInputAmount = getInputValue('income-input');
     //Food Amount
-    //const foodInputAmount = getInputValue('food-input');
-    const foodInput = document.getElementById('food-input');
-    const foodInputAmount = parseFloat(foodInput.value);
-    foodInput.value= ''
-
+    const foodInputAmount = getInputValue('food-input');
     //Rent amount
-    // const rentInputAmount = getInputValue('rent-input');
-    const rentInput = document.getElementById('rent-input');
-    const rentInputAmount = parseFloat(rentInput.value);
-
-    rentInput.value = ''
-
+    const rentInputAmount = getInputValue('rent-input');
     //Cloth Amount
-    //const clothInputAmount = getInputValue('cloth-input');
-    const clothInput = document.getElementById('cloth-input');
-    const clothInputAmount = parseFloat(clothInput.value);
-
-    clothInput.value = ''
-
+    const clothInputAmount = getInputValue('cloth-input');
     //total expense
     const totalExpenses = foodInputAmount + rentInputAmount + clothInputAmount;
-
     //Rest balance
     const restBalance = incomeInputAmount - totalExpenses
-    //Save Amount
+    //Get Save Input Value
     const saveInput = document.getElementById('save-input');
     const saveInputValue = parseFloat(saveInput.value);
-    //console.log(saveInputValue)
-
+    //Get Save Input Amount and error validation
     const savingAmount = document.getElementById('saving-amount');
-    savingAmount.innerText = (saveInputValue / 100) * incomeInputAmount
-    console.log(savingAmount.innerText)
-    const savingAmountValue = savingAmount.innerText
+    const savingAmountNumber = (saveInputValue / 100) * incomeInputAmount
+    if(restBalance > savingAmountNumber){
+        savingAmount.innerText = savingAmountNumber
+    }else{
+        //alert('You do not have sufficient balance to save')
+    }
 
+    const savingAmountValue = savingAmount.innerText
     //Remaining Balance
     const remainingBalance = document.getElementById('balance-remaining');
     remainingBalance.innerText =  restBalance - savingAmountValue
