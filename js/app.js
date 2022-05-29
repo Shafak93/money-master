@@ -1,5 +1,4 @@
 function getInputValue(inputid){
-    debugger
     const inputField = document.getElementById(inputid);
     const inputAmount = parseFloat(inputField.value);
     return inputAmount;
